@@ -4,13 +4,13 @@ import { createMemoryHistory } from "history";
 
 import { Router } from "react-router-dom";
 
-import useHistory from "../src/useHistory";
+import useHistoryWithQuery from "../src/useHistoryWithQuery";
 
 const makeWrapper = history => ({ children }) => (
   <Router history={history}>{children}</Router>
 );
 
-describe("useHistory", () => {
+describe("useHistoryWithQuery", () => {
   it("parses search query", () => {
     const history = createMemoryHistory({
       initialEntries: ["/path?one=1&two=value&arr=A&arr=B&arr=C"],
@@ -18,7 +18,7 @@ describe("useHistory", () => {
     });
     const wrapper = makeWrapper(history);
 
-    const { result } = renderHook(() => useHistory(), { wrapper });
+    const { result } = renderHook(() => useHistoryWithQuery(), { wrapper });
 
     expect(result.current.location.pathname).toBe("/path");
     expect(result.current.location.search).toBe(
@@ -39,7 +39,7 @@ describe("useHistory", () => {
     const wrapper = makeWrapper(history);
 
     const { result } = renderHook(
-      () => useHistory({ queryOptions: { parseNumbers: true } }),
+      () => useHistoryWithQuery({ queryOptions: { parseNumbers: true } }),
       { wrapper }
     );
 

@@ -3,7 +3,7 @@ import { renderHook } from "@testing-library/react-hooks";
 
 import { StaticRouter } from "react-router-dom";
 
-import useLocation from "../src/useLocation";
+import useLocationWithQuery from "../src/useLocationWithQuery";
 
 const makeWrapper = location => ({ children }) => (
   <StaticRouter location={location}>{children}</StaticRouter>
@@ -13,7 +13,7 @@ describe("useLocation", () => {
   it("parses search query", () => {
     const wrapper = makeWrapper("/path?one=1&two=value&arr=A&arr=B&arr=C");
 
-    const { result } = renderHook(() => useLocation(), { wrapper });
+    const { result } = renderHook(() => useLocationWithQuery(), { wrapper });
 
     expect(result.current.search).toBe("?one=1&two=value&arr=A&arr=B&arr=C");
     expect(result.current.query).toEqual({
@@ -27,7 +27,7 @@ describe("useLocation", () => {
     const wrapper = makeWrapper("/path?one=1&two=value");
 
     const { result } = renderHook(
-      () => useLocation({ queryOptions: { parseNumbers: true } }),
+      () => useLocationWithQuery({ queryOptions: { parseNumbers: true } }),
       {
         wrapper
       }
