@@ -17,12 +17,27 @@ $ yarn add react-router-query-string
 ## Basic Usage
 There are two main uses for this package:
 
-1. As a drop-in replacement for `useLocation` or `useHistory` (with a name change) or,
-2. By itself, with `useQueryString` (for query-only changes).
+1. The higher-level `useQueryString` hook (for only reading & updating url query params).
+2. The lower-level replacements for `useLocation` or `useHistory`.
 
-**Note:** With both usages, you'll need to have your components wrapped in a `Router` (Any kind of router will do).
+**Note:** With both usages, you'll need to have your components wrapped in a `Router` (any flavor exported by React Router will do).
 
-### 1. Augmenting default `react-router-dom` Hooks:
+### 1. The `useQueryString` Hook
+The easiest way to use this library is to use the higher-level `useQueryString` hook. It basically is a sweetened version of the `useHistoryWithQuery` hook outlined below.
+
+```jsx
+import { useQueryString } from 'react-router-query-string';
+
+const MyComponentInRouter = () => {
+  const [query, { pushQuery, replaceQuery }] = useQueryString();
+}
+```
+In the above example the first entry in the tuple (`query`) contains the parsed query parameters from the URL.  The second value is an object containing two setters.
+
+The return value for the `useQueryString` hook is similar to React's `useState`; however it includes _two_ setters instead of one: `pushQuery` and `replaceQuery`—to either add a history entry or replace the current history entry respectively.
+
+### 2. Augmenting default `react-router-dom` Hooks:
+If you want to use some more primitive hooks, the useQueryString hook builds upon the two hooks that wrap the underlying React Router hooks.
 
 #### Using React Router's Hooks:
 ```jsx
@@ -68,19 +83,6 @@ const MyComponentInRouter = () => {
   */
 }
 ```
-
-### 2. `useQueryString` Hook
-Another way to use this library is to use the higher-level `useQueryString` hook. It basically is a sweetened version of the `useHistoryWithQuery` hook.
-
-```jsx
-import { useQueryString } from 'react-router-query-string';
-
-const MyComponentInRouter = () => {
-  const [query, {pushQuery, replaceQuery}] = useQueryString();
-}
-```
-
-The return value for the `useQueryString` hook is similar to React's `useState`; however it includes two setters instead of one: `pushQuery` and `replaceQuery` to either add a history entry or replace the current history entry.  The first entry in the tuple, is the parsed query string as an object.
 
 ### Library Details
 
