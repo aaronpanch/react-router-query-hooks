@@ -11,12 +11,32 @@
   "scripts": {
     "test": "jest"
   },
+  "jest": {
+    "transform": {
+      "^.+\\.js?$": "babel-jest"
+    }
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/aaronpanch/react-router-query-string/issues"
   },
   "homepage": "https://github.com/aaronpanch/react-router-query-string#readme",
   "devDependencies": {
-    "jest": "^25.1.0"
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-react": "^7.9.4",
+    "@testing-library/react-hooks": "^3.2.1",
+    "babel-jest": "^25.1.0",
+    "jest": "^25.1.0",
+    "react": "^16.13.1",
+    "react-test-renderer": "^16.13.1"
+  },
+  "dependencies": {
+    "query-string": "^6.11.1",
+    "react-router-dom": "^5.0.0"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
   }
 }
