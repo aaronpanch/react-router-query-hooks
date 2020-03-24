@@ -17,13 +17,13 @@ $ yarn add react-router-query-string
 ## Basic Usage
 There are two main uses for this package:
 
-1. The higher-level `useQueryString` hook (for only reading & updating url query params).
-2. The lower-level replacements for `useLocation` or `useHistory`.
+1. The higher-level `useQueryString` hook.
+2. The lower-level replacements for `useLocation` or `useHistory`: `useLocationWithQuery` and `useHistoryWithQuery`.
 
-**Note:** With both usages, you'll need to have your components wrapped in a `Router` (any flavor exported by React Router will do).
+**Note:** With both usages, you'll need to have your components wrapped in a `Router` (any flavor exported by React Router should work).
 
 ### 1. The `useQueryString` Hook
-The easiest way to use this library is to use the higher-level `useQueryString` hook. It basically is a sweetened version of the `useHistoryWithQuery` hook outlined below.
+The easiest way to use this library is to use the higher-level `useQueryString` hook. It's useful for reading or updating the current query parameters from the URL.  Behind the scenes, it's basically is a sweetened version of the `useHistoryWithQuery` hook outlined in the next section.
 
 ```jsx
 import { useQueryString } from 'react-router-query-string';
@@ -32,12 +32,10 @@ const MyComponentInRouter = () => {
   const [query, { pushQuery, replaceQuery }] = useQueryString();
 }
 ```
-In the above example the first entry in the tuple (`query`) contains the parsed query parameters from the URL.  The second value is an object containing two setters.
+The return value for the `useQueryString` hook is similar to React's `useState`; however it includes _two_ setters instead of one: `pushQuery` and `replaceQuery`—to either add a history entry or replace the current history entry respectively. In the above example the first entry in the tuple (`query`) contains the parsed query parameters from the URL.
 
-The return value for the `useQueryString` hook is similar to React's `useState`; however it includes _two_ setters instead of one: `pushQuery` and `replaceQuery`—to either add a history entry or replace the current history entry respectively.
-
-### 2. Augmenting default `react-router-dom` Hooks:
-If you want to use some more primitive hooks, the useQueryString hook builds upon the two hooks that wrap the underlying React Router hooks.
+### 2. Augmented default `react-router-dom` Hooks:
+If you want to use some more primitive hooks, the useQueryString hook builds upon the two hooks that wrap the underlying React Router hooks ([useLocation](https://reacttraining.com/react-router/web/api/Hooks/uselocation), and [useHistory](https://reacttraining.com/react-router/web/api/Hooks/usehistory))
 
 #### Using React Router's Hooks:
 ```jsx
