@@ -1,0 +1,19 @@
+{
+  "name": "react-router-query-string",
+  "version": "1.0.0",
+  "description": "React Router hooks with query string utilities",
+  "author": "Aaron Panchal <aaron.panchal@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aaronpanch/react-router-query-string.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aaronpanch/react-router-query-string/issues"
+  },
+  "homepage": "https://github.com/aaronpanch/react-router-query-string#readme"
+}
