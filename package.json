@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/aaronpanch/react-router-query-string/issues"
   },
-  "homepage": "https://github.com/aaronpanch/react-router-query-string#readme"
+  "homepage": "https://github.com/aaronpanch/react-router-query-string#readme",
+  "devDependencies": {
+    "jest": "^25.1.0"
+  }
 }
