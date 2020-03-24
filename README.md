@@ -23,7 +23,7 @@ There are two main uses for this package:
 **Note:** With both usages, you'll need to have your components wrapped in a `Router` (any flavor exported by React Router should work).
 
 ### 1. The `useQueryString` Hook
-The easiest way to use this library is to use the higher-level `useQueryString` hook. It's useful for reading or updating the current query parameters from the URL.  Behind the scenes, it's basically is a sweetened version of the `useHistoryWithQuery` hook outlined in the next section.
+The easiest way to use this library is to use the higher-level `useQueryString` hook. It's useful for reading or updating the current query parameters from the URL.  Behind the scenes, it's basically a sweetened version of the `useHistoryWithQuery` hook outlined in the next section.
 
 ```jsx
 import { useQueryString } from 'react-router-query-string';
@@ -34,21 +34,27 @@ const MyComponentInRouter = () => {
 ```
 The return value for the `useQueryString` hook is similar to React's `useState`; however it includes _two_ setters instead of one: `pushQuery` and `replaceQuery`—to either add a history entry or replace the current history entry respectively. In the above example the first entry in the tuple (`query`) contains the parsed query parameters from the URL.
 
+
 ### 2. Augmented default `react-router-dom` Hooks:
 If you want to use some more primitive hooks, the useQueryString hook builds upon the two hooks that wrap the underlying React Router hooks ([useLocation](https://reacttraining.com/react-router/web/api/Hooks/uselocation), and [useHistory](https://reacttraining.com/react-router/web/api/Hooks/usehistory))
 
-#### Using React Router's Hooks:
+#### `useLocationWithQuery`:
 ```jsx
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
+import { useLocationWithQuery } from "react-router-query-string";
 
 const MyComponentInRouter = () => {
-  const location = useLocation();
+  // const location = useLocation();
+  const location = useLocationWithQuery(); // Same interface as above but with location.query
   
-  /* Do things with location object:
+  /* Augmented location object:
   {
     key: 'ac3df4', // not with HashHistory!
     pathname: '/somewhere',
     search: '?some=search-string',
+    query: {
+      some: "search-string"  // <- ADDED PROPERTY
+    },
     hash: '#howdy',
     state: {
       [userDefined]: true
@@ -58,27 +64,22 @@ const MyComponentInRouter = () => {
 }
 ```
 
-#### Locations with query:
+#### `useHistoryWithQuery`:
 ```jsx
-import { useLocationWithQuery } from 'react-router-query-string';
+import { useHistory } from "react-router-dom"
+import { useHistoryWithQuery } from "react-router-query-string";
 
 const MyComponentInRouter = () => {
-  const location = useLocationWithQuery();
+  // const history = useHistory();
+  const history = useHistoryWithQuery();
   
-  /* Do things with location object:
-  {
-    key: 'ac3df4', // not with HashHistory!
-    pathname: '/somewhere',
-    search: '?some=search-string',
-    query: {
-      some: "search-string"  // <- NEW PROPERTY
-    },
-    hash: '#howdy',
-    state: {
-      [userDefined]: true
-    }
-  }
-  */
+  // Supports push & replace with of location.query (and existing API):
+  return (
+    <>
+      <button onClick={() => history.replace({ query: { page: 1 }})}>Go to Page 1</button>
+      <button onClick={() => history.push({ query: { page: 1 }})}>Go to Page 1</button>
+    </>
+  );
 }
 ```
 
