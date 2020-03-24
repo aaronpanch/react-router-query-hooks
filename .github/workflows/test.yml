@@ -1,0 +1,21 @@
+name: Test
+
+on: push
+
+jobs:
+  test:
+    name: Test Package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+      - name: Install Dependencies
+        run: npm install
+      - name: Run Tests
+        run: npm test -- --coverage
