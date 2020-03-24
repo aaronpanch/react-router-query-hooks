@@ -1,5 +1,7 @@
 # React Router Hooks With Parsed Queries
 
+![Test](https://github.com/aaronpanch/react-router-query-string/workflows/Test/badge.svg)
+
 A small package that augments the basic `react-router-dom` hooks (`useLocation` and `useHistory`) to be more query string aware by parsing using the `query-string` library.
 
 As an added bonus, you also get a simple `useQueryString` hook for query string manipulation (useful for UIs where sort order, or page number is encoded in the URL).  See the usage notes for more details.
