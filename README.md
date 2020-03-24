@@ -35,10 +35,12 @@ const MyComponentInRouter = () => {
 The return value for the `useQueryString` hook is similar to React's `useState`; however it includes _two_ setters instead of one: `pushQuery` and `replaceQuery`—to either add a history entry or replace the current history entry respectively. In the above example the first entry in the tuple (`query`) contains the parsed query parameters from the URL.
 
 
-### 2. Augmented default `react-router-dom` Hooks:
-If you want to use some more primitive hooks, the useQueryString hook builds upon the two hooks that wrap the underlying React Router hooks ([useLocation](https://reacttraining.com/react-router/web/api/Hooks/uselocation), and [useHistory](https://reacttraining.com/react-router/web/api/Hooks/usehistory))
+### 2. Augmented `useLocation` and `useHistory` hooks
+If you want to use some more primitive hooks, the useQueryString hook builds upon the two hooks that wrap the underlying React Router hooks ([useLocation](https://reacttraining.com/react-router/web/api/Hooks/uselocation), and [useHistory](https://reacttraining.com/react-router/web/api/Hooks/usehistory)).
 
-#### `useLocationWithQuery`:
+#### `useLocationWithQuery`
+This modified hook adds the `query` key to React Router's [`location` object](https://reacttraining.com/react-router/web/api/location) which contains a parsed version of `location.search`.  As with `useLocation` it is read-only (has no setters).
+
 ```jsx
 import { useLocation } from "react-router-dom";
 import { useLocationWithQuery } from "react-router-query-string";
@@ -64,7 +66,10 @@ const MyComponentInRouter = () => {
 }
 ```
 
-#### `useHistoryWithQuery`:
+#### `useHistoryWithQuery`
+This modified hook builds upon React Router's [`history`](https://reacttraining.com/react-router/web/api/history) object and the above location additions:
+- In `history.location`, it adds the `query` key to React Router's [`location` object](https://reacttraining.com/react-router/web/api/location) (as above)
+- Furthermore, it supports URL updates with the `query` key. So `history.replace` supports both paths (as before) and location objects with the `query` key.
 ```jsx
 import { useHistory } from "react-router-dom"
 import { useHistoryWithQuery } from "react-router-query-string";
