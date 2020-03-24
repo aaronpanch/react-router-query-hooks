@@ -1,10 +1,8 @@
 import { useLocation } from "react-router-dom";
-import queryString from "query-string";
+
+import withParsedQuery from "./withParsedQuery";
 
 export default ({ queryOptions } = {}) => {
   const location = useLocation();
-  return {
-    ...location,
-    query: queryString.parse(location.search, queryOptions)
-  };
+  return withParsedQuery(location, queryOptions);
 };
