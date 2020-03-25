@@ -3,7 +3,7 @@ import { renderHook } from "@testing-library/react-hooks";
 
 import { StaticRouter } from "react-router-dom";
 
-import useLocationWithQuery from "../src/useLocationWithQuery";
+import { useLocationWithQuery } from "..";
 
 const makeWrapper = location => ({ children }) => (
   <StaticRouter location={location}>{children}</StaticRouter>

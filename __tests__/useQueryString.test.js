@@ -4,7 +4,7 @@ import { createMemoryHistory } from "history";
 
 import { Router } from "react-router-dom";
 
-import useQueryString from "../src/useQueryString";
+import { useQueryString } from "..";
 
 const makeWrapper = history => ({ children }) => (
   <Router history={history}>{children}</Router>
