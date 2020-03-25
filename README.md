@@ -1,6 +1,6 @@
 # React Router Hooks With Parsed Queries
 
-![Test](https://github.com/aaronpanch/react-router-query-string/workflows/Test/badge.svg)
+![Test](https://github.com/aaronpanch/react-router-query-hooks/workflows/Test/badge.svg)
 
 A small package that augments the basic `react-router-dom` hooks (`useLocation` and `useHistory`) to be more query string aware by parsing using the `query-string` library.
 
@@ -8,11 +8,11 @@ As an added bonus, you also get a simple `useQueryString` hook for query string 
 
 ## How to Install
 ```bash
-$ npm install react-router-query-string
+$ npm install react-router-query-hooks
 ```
 or 
 ```bash
-$ yarn add react-router-query-string
+$ yarn add react-router-query-hooks
 ```
 ## Basic Usage
 There are two main uses for this package:
@@ -26,7 +26,7 @@ There are two main uses for this package:
 The easiest way to use this library is to use the higher-level `useQueryString` hook. It basically is a sweetened version of the `useHistoryWithQuery` hook outlined below.
 
 ```jsx
-import { useQueryString } from 'react-router-query-string';
+import { useQueryString } from 'react-router-query-hooks';
 
 const MyComponentInRouter = () => {
   const [query, { pushQuery, replaceQuery }] = useQueryString();
@@ -62,7 +62,7 @@ const MyComponentInRouter = () => {
 
 #### Locations with query:
 ```jsx
-import { useLocationWithQuery } from 'react-router-query-string';
+import { useLocationWithQuery } from 'react-router-query-hooks';
 
 const MyComponentInRouter = () => {
   const location = useLocationWithQuery();
