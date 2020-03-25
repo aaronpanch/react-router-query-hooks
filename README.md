@@ -96,7 +96,7 @@ const MyComponentInRouter = () => {
   // const history = useHistory();
   const history = useHistoryWithQuery();
 
-  // Supports push & replace with of location.query (and existing API):
+  // Supports push & replace with query object in location (along with supporting the existing API):
   return (
     <>
       <button onClick={() => history.replace({ query: { page: 1 } })}>
