@@ -21,7 +21,7 @@ export default ({ queryOptions } = {}) => {
     queryOptions
   ]);
 
-  const replaeWithQuery = useCallback(wrapWithQuery(replace, queryOptions), [
+  const replaceWithQuery = useCallback(wrapWithQuery(replace, queryOptions), [
     replace,
     queryOptions
   ]);
@@ -30,6 +30,6 @@ export default ({ queryOptions } = {}) => {
     ...history,
     location: withParsedQuery(location, queryOptions),
     push: pushWithQuery,
-    replace: replaeWithQuery
+    replace: replaceWithQuery
   };
 };
