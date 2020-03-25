@@ -113,3 +113,31 @@ const MyComponentInRouter = () => {
 ### Library Details
 
 - None of the hooks shadow the URL state—everything is read from the URL.
+
+## Fuller Example
+
+The motivation for this package was to have an easy way to maintain URL query parameters, that was simple, somewhat light, and used the URL as the source of truth. Furthermore, it was designed to support UIs that have pagination:
+
+```jsx
+import { useQueryString } from "react-router-query-hooks";
+
+const MyComponentInRouter = () => {
+  const [query, { replaceQuery }] = useQueryString();
+  const { page, sortBy, order } = query;
+
+  // Useful for calling APIs with a page and sort order
+  const { data } = useAPI("/my-resource", { page, sortBy, order });
+
+  return (
+    <div>
+      <Table
+        data={data}
+        onHeaderClick={(sortBy, order) =>
+          replaceQuery({ ...query, sortBy, order })
+        }
+      />
+      <Pagination onClick={page => replaceQuery({ ...query, page })} />
+    </div>
+  );
+};
+```
