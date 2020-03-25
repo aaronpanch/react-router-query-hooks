@@ -1,11 +1,11 @@
 {
-  "name": "react-router-query-string",
-  "version": "1.0.0",
+  "name": "react-router-query-hooks",
+  "version": "1.0.0-rc1",
   "description": "React Router hooks with query string utilities",
   "author": "Aaron Panchal <aaron.panchal@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aaronpanch/react-router-query-string.git"
+    "url": "git+https://github.com/aaronpanch/react-router-query-hooks.git"
   },
   "main": "index.js",
   "scripts": {
@@ -18,9 +18,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/aaronpanch/react-router-query-string/issues"
+    "url": "https://github.com/aaronpanch/react-router-query-hooks/issues"
   },
-  "homepage": "https://github.com/aaronpanch/react-router-query-string#readme",
+  "homepage": "https://github.com/aaronpanch/react-router-query-hooks#readme",
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
