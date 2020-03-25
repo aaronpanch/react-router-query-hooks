@@ -1,7 +1,7 @@
 {
   "name": "react-router-query-hooks",
   "version": "1.0.0",
-  "description": "React Router hooks with query string utilities",
+  "description": "React Router hooks with query string parsing",
   "author": "Aaron Panchal <aaron.panchal@gmail.com>",
   "repository": {
     "type": "git",
