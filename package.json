@@ -21,6 +21,23 @@
     "url": "https://github.com/aaronpanch/react-router-query-hooks/issues"
   },
   "homepage": "https://github.com/aaronpanch/react-router-query-hooks#readme",
+  "keywords": [
+    "react",
+    "react-router",
+    "query",
+    "hook",
+    "hooks",
+    "router",
+    "query params",
+    "parameters",
+    "query string",
+    "query-string",
+    "parse",
+    "url",
+    "useLocation",
+    "useHistory",
+    "useQueryParam"
+  ],
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
