@@ -4,7 +4,7 @@
 
 A small package that augments the basic `react-router-dom` hooks (`useLocation` and `useHistory`) to be more query string aware by parsing using the `query-string` library.
 
-Primarily, it exports a simple `useQueryString` hook for reading and manipulating the URL query string (useful for UIs where sort order, or page number is encoded in the URL). See the usage notes for more details.
+Primarily, it exports a simple `useQueryParams` hook for reading and manipulating the URL query string (useful for UIs where sort order, or page number is encoded in the URL). See the usage notes for more details.
 
 Depends on:
 
@@ -29,28 +29,28 @@ $ yarn add react-router-query-hooks
 
 There are two main uses for this package:
 
-1. The higher-level `useQueryString` hook.
+1. The higher-level `useQueryParams` hook.
 2. The lower-level replacements for `useLocation` or `useHistory`: `useLocationWithQuery` and `useHistoryWithQuery`.
 
 **Note:** With both usages, you'll need to have your components wrapped in a `Router` (any flavor exported by React Router should work).
 
-### 1. The `useQueryString` Hook
+### 1. The `useQueryParams` Hook
 
-The easiest way to use this library is to use the higher-level `useQueryString` hook. It's useful for reading or updating the current query parameters from the URL. Behind the scenes, it's basically a sweetened version of the `useHistoryWithQuery` hook outlined in the next section.
+The easiest way to use this library is to use the higher-level `useQueryParams` hook. It's useful for reading or updating the current query parameters from the URL. Behind the scenes, it's basically a sweetened version of the `useHistoryWithQuery` hook outlined in the next section.
 
 ```jsx
-import { useQueryString } from "react-router-query-hooks";
+import { useQueryParams } from "react-router-query-hooks";
 
 const MyComponentInRouter = () => {
-  const [query, { pushQuery, replaceQuery }] = useQueryString();
+  const [query, { pushQuery, replaceQuery }] = useQueryParams();
 };
 ```
 
-The return value for the `useQueryString` hook is similar to React's `useState`; however it includes _two_ setters instead of one: `pushQuery` and `replaceQuery`—to either add a history entry or replace the current history entry respectively. In the above example the first entry in the tuple (`query`) contains the parsed query parameters from the URL.
+The return value for the `useQueryParams` hook is similar to React's `useState`; however it includes _two_ setters instead of one: `pushQuery` and `replaceQuery`—to either add a history entry or replace the current history entry respectively. In the above example the first entry in the tuple (`query`) contains the parsed query parameters from the URL.
 
 ### 2. Augmented `useLocation` and `useHistory` hooks
 
-If you want to use some more primitive hooks, the useQueryString hook builds upon the two hooks that wrap the underlying React Router hooks ([useLocation](https://reacttraining.com/react-router/web/api/Hooks/uselocation), and [useHistory](https://reacttraining.com/react-router/web/api/Hooks/usehistory)).
+If you want to use some more primitive hooks, the useQueryParams hook builds upon the two hooks that wrap the underlying React Router hooks ([useLocation](https://reacttraining.com/react-router/web/api/Hooks/uselocation), and [useHistory](https://reacttraining.com/react-router/web/api/Hooks/usehistory)).
 
 #### `useLocationWithQuery`
 
@@ -119,10 +119,10 @@ const MyComponentInRouter = () => {
 The motivation for this package was to have an easy way to maintain URL query parameters, that was simple, somewhat light, and used the URL as the source of truth. Furthermore, it was designed to support UIs that have pagination:
 
 ```jsx
-import { useQueryString } from "react-router-query-hooks";
+import { useQueryParams } from "react-router-query-hooks";
 
 const MyComponentInRouter = () => {
-  const [query, { replaceQuery }] = useQueryString();
+  const [query, { replaceQuery }] = useQueryParams();
   const { page, sortBy, order } = query;
 
   // Useful for calling APIs with a page and sort order

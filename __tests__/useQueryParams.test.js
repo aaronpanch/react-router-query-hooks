@@ -4,7 +4,7 @@ import { createMemoryHistory } from "history";
 
 import { Router } from "react-router-dom";
 
-import { useQueryString } from "..";
+import { useQueryParams } from "..";
 
 const makeWrapper = history => ({ children }) => (
   <Router history={history}>{children}</Router>
@@ -22,7 +22,7 @@ describe("useHistoryWithQuery", () => {
 
   it("allows query string customization", () => {
     const { result } = renderHook(
-      () => useQueryString({ parseNumbers: true }),
+      () => useQueryParams({ parseNumbers: true }),
       { wrapper: makeWrapper(history) }
     );
 
@@ -37,7 +37,7 @@ describe("useHistoryWithQuery", () => {
 
   it("updates query string", () => {
     const { result } = renderHook(
-      () => useQueryString({ parseNumbers: true }),
+      () => useQueryParams({ parseNumbers: true }),
       { wrapper: makeWrapper(history) }
     );
 
