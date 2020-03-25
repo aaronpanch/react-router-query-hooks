@@ -1,6 +1,6 @@
 {
   "name": "react-router-query-hooks",
-  "version": "1.0.0-rc2",
+  "version": "1.0.0",
   "description": "React Router hooks with query string utilities",
   "author": "Aaron Panchal <aaron.panchal@gmail.com>",
   "repository": {
@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "query-string": "^6.11.1",
-    "react-router-dom": "^5.0.0"
+    "react-router-dom": "^5.1.0"
   },
   "peerDependencies": {
     "react": "^16.8.0",

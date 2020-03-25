@@ -8,8 +8,10 @@ Primarily, it exports a simple `useQueryString` hook for reading and manipulatin
 
 Depends on:
 
-- `react-router-dom` > 5 (to support hooks)
+- `react-router-dom@5.1` (needs hooks)
 - `query-string`
+
+This package is also written in ES6, so to use, you'll need some transpiler such as babel (on node_modules).
 
 ## How to Install
 
