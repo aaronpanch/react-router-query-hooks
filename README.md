@@ -119,6 +119,7 @@ const MyComponentInRouter = () => {
 The motivation for this package was to have an easy way to maintain URL query parameters, that was simple, somewhat light, and used the URL as the source of truth. Furthermore, it was designed to support UIs that have pagination:
 
 ```jsx
+import React from "react";
 import { useQueryParams } from "react-router-query-hooks";
 
 const MyComponentInRouter = () => {
@@ -141,3 +142,43 @@ const MyComponentInRouter = () => {
   );
 };
 ```
+
+## Optimization
+
+Sometimes you don't want to recreate a callback on every render. Consider the example above: on each render, `onHeaderClick` callback is redefined. The next optimization (if needed) is to wrap that callback in `useCallback`:
+
+```jsx
+import React, { useCallback } from "react";
+import { useQueryParams } from "react-router-query-hooks";
+
+const MyComponentInRouter = () => {
+  const [query, { replaceQuery }] = useQueryParams();
+  const { page, sortBy, order } = query;
+
+  // Useful for calling APIs with a page and sort order
+  const { data } = useAPI("/my-resource", { page, sortBy, order });
+  const onClick = useCallback(
+    (sortBy, order) => replaceQuery({ ...query, sortBy, order }),
+    [query]
+  );
+
+  return (
+    <div>
+      <Table data={data} onHeaderClick={onClick} />
+      <Pagination onClick={page => replaceQuery({ ...query, page })} />
+    </div>
+  );
+};
+```
+
+That's a good start: on each render we'll use the same `onClick` callback and only redefine if `query` changes. In some cases, query may change _frequently_. The next optimization we can make is to update using a _function_ (this should look familiar when using `useState`):
+
+```js
+const onClick = useCallback(
+  (sortBy, order) =>
+    replaceQuery(currentQuery => ({ ...currentQuery, sortBy, order })),
+  []
+);
+```
+
+Now, our callback doesn't have any dependencies, and will be reused for each render! This method of changing the state works for both `replaceQuery` and `pushQuery`.
