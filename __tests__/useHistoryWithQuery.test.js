@@ -25,6 +25,8 @@ describe("useHistoryWithQuery", () => {
       wrapper: makeWrapper(history)
     });
 
+    // Assert that original history is mutated (to preserve callbacks)
+    expect(result.current).toBe(history);
     expect(result.current.location.pathname).toBe("/path");
     expect(result.current.location.search).toBe(
       "?one=1&two=value&arr=A&arr=B&arr=C"

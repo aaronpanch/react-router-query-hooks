@@ -61,4 +61,35 @@ describe("useHistoryWithQuery", () => {
     });
     expect(history.entries).toHaveLength(2);
   });
+
+  it("accepts functional query string update", () => {
+    const { result } = renderHook(
+      () => useQueryParams({ parseNumbers: true }),
+      { wrapper: makeWrapper(history) }
+    );
+
+    act(() => {
+      result.current[1].replaceQuery(query => ({ ...query, one: 2, a: "B" }));
+    });
+
+    expect(result.current[0]).toEqual({
+      one: 2,
+      two: "value",
+      arr: ["A", "B", "C"],
+      a: "B"
+    });
+    expect(history.entries).toHaveLength(1);
+
+    act(() => {
+      result.current[1].pushQuery(query => ({ ...query, a: "A" }));
+    });
+
+    expect(result.current[0]).toEqual({
+      one: 2,
+      two: "value",
+      arr: ["A", "B", "C"],
+      a: "A"
+    });
+    expect(history.entries).toHaveLength(2);
+  })
 });

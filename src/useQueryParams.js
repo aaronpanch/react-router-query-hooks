@@ -1,10 +1,24 @@
 import { useCallback } from "react";
 import useHistoryWithQuery from "./useHistoryWithQuery";
 
-export default queryOptions => {
-  const { location, push, replace } = useHistoryWithQuery({ queryOptions });
-  const pushQuery = useCallback(query => push({ query }), [push]);
-  const replaceQuery = useCallback(query => replace({ query }), [replace]);
+const updateURL = (history, type, update) =>
+  history[type]({
+    query:
+      typeof update === "function" ? update(history.location.query) : update
+  });
 
-  return [location.query, { pushQuery, replaceQuery }];
+export default queryOptions => {
+  const history = useHistoryWithQuery({ queryOptions });
+
+  const pushQuery = useCallback(
+    update => updateURL(history, "push", update),
+    [history]
+  );
+
+  const replaceQuery = useCallback(
+    update => updateURL(history, "replace", update),
+    [history]
+  );
+
+  return [history.location.query, { pushQuery, replaceQuery }];
 };
