@@ -4,17 +4,17 @@ import queryString from "query-string";
 
 import withParsedQuery from "./withParsedQuery";
 
-const wrapWithQuery = (navigate, options) => (location, state) => {
-  if (typeof location === "object" && location.query) {
-    const search = queryString.stringify(location.query, options);
-    navigate({ ...location, search }, state);
-  } else {
-    navigate(location, state);
-  }
-};
+const wrapWithQuery = (navigate, options) => (location, state) =>
+  typeof location === "object" && location.query
+    ? navigate(
+        { ...location, search: queryString.stringify(location.query, options) },
+        state
+      )
+    : navigate(location, state);
 
 export default ({ queryOptions } = {}) => {
-  const { location, push, replace, ...history } = useHistory();
+  const history = useHistory();
+  const { location, push, replace } = history;
 
   const pushWithQuery = useCallback(wrapWithQuery(push, queryOptions), [
     push,
@@ -26,10 +26,9 @@ export default ({ queryOptions } = {}) => {
     queryOptions
   ]);
 
-  return {
-    ...history,
+  return Object.assign(history, {
     location: withParsedQuery(location, queryOptions),
     push: pushWithQuery,
     replace: replaceWithQuery
-  };
+  });
 };
