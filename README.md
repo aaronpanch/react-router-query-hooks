@@ -8,21 +8,21 @@ Primarily, it exports a simple `useQueryParams` hook for reading and manipulatin
 
 Depends on:
 
-- `react-router-dom@^5.1` (needs hooks)
 - `query-string`
+- **Peer Dependency** `react-router-dom@^5.1` or greater (needs router hooks)
 
 This package is also written in ES6, so to use, you'll need some transpiler such as babel to run on node_modules.
 
 ## How to Install
 
 ```bash
-$ npm install react-router-query-hooks
+$ npm install react-router-query-hooks react-router-dom
 ```
 
 or
 
 ```bash
-$ yarn add react-router-query-hooks
+$ yarn add react-router-query-hooks react-router-dom
 ```
 
 ## Basic Usage
@@ -87,7 +87,7 @@ This modified hook builds upon React Router's [`history`](https://reacttraining.
 
 - In `history.location`, it adds the `query` key to React Router's [`location` object](https://reacttraining.com/react-router/web/api/location) (as above)
 - Furthermore, it supports URL updates with the `query` key. So `history.replace` supports both paths (as before) and location objects with the `query` key.
-- **GOTCHA:** React router does NOT trigger an update to `history.location` when the location changes. While the _internal_ history object is updated, this is a mutation, and React will not update the component.  You must listen to the location separately using `useLocationWithQuery` or the combined `useQueryParams` to update the component upon a location change.
+- **GOTCHA:** React router does NOT trigger an update to `history.location` when the location changes. While the _internal_ history object is updated, this is a mutation, and React will not update the component. You must listen to the location separately using `useLocationWithQuery` or the combined `useQueryParams` to update the component upon a location change.
 
 ```jsx
 import { useHistory } from "react-router-dom";
