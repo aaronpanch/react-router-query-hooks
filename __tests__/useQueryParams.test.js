@@ -10,7 +10,7 @@ const makeWrapper = history => ({ children }) => (
   <Router history={history}>{children}</Router>
 );
 
-describe("useHistoryWithQuery", () => {
+describe("useQueryParams", () => {
   let history;
 
   beforeEach(() => {
@@ -91,5 +91,5 @@ describe("useHistoryWithQuery", () => {
       a: "A"
     });
     expect(history.entries).toHaveLength(2);
-  })
+  });
 });

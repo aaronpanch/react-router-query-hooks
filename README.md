@@ -2,7 +2,7 @@
 
 ![Test](https://github.com/aaronpanch/react-router-query-hooks/workflows/Test/badge.svg)
 
-A small package that augments the basic `react-router-dom` hooks (`useLocation` and `useHistory`) to be more query string aware by parsing using the `query-string` library.
+A small package that augments the basic [`react-router-dom`](https://reactrouter.com/web/guides/quick-start) hooks (`useLocation` and `useHistory`) to be more query string aware by parsing using the [`query-string`](https://github.com/sindresorhus/query-string) library.
 
 Primarily, it exports a simple `useQueryParams` hook for reading and manipulating the URL query string (useful for UIs where sort order, or page number is encoded in the URL). See the usage notes for more details.
 
@@ -87,6 +87,7 @@ This modified hook builds upon React Router's [`history`](https://reacttraining.
 
 - In `history.location`, it adds the `query` key to React Router's [`location` object](https://reacttraining.com/react-router/web/api/location) (as above)
 - Furthermore, it supports URL updates with the `query` key. So `history.replace` supports both paths (as before) and location objects with the `query` key.
+- **GOTCHA:** React router does NOT trigger an update to `history.location` when the location changes. While the _internal_ history object is updated, this is a mutation, and React will not update the component.  You must listen to the location separately using `useLocationWithQuery` or the combined `useQueryParams` to update the component upon a location change.
 
 ```jsx
 import { useHistory } from "react-router-dom";
