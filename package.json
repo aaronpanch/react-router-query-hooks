@@ -48,14 +48,15 @@
     "jest": "^26.6.3",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
+    "react-router-dom": "^5.2.0",
     "react-test-renderer": "^16.14.0"
   },
   "dependencies": {
-    "query-string": "^6.11.1",
-    "react-router-dom": "^5.2.0"
+    "query-string": "^6.11.1"
   },
   "peerDependencies": {
     "react": "^16.8.0",
-    "react-dom": "^16.8.0"
+    "react-dom": "^16.8.0",
+    "react-router-dom": "^5.1.0"
   }
 }
