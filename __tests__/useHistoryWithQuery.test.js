@@ -75,9 +75,6 @@ describe("useHistoryWithQuery", () => {
       result.current.replace({ query: { two: "stuff" } });
     });
 
-    expect(result.current.location.query).toEqual({
-      two: "stuff"
-    });
     expect(history.entries[0].search).toEqual("?two=stuff");
   });
 
@@ -101,9 +98,6 @@ describe("useHistoryWithQuery", () => {
       result.current.push({ query: { two: "stuff" } });
     });
 
-    expect(result.current.location.query).toEqual({
-      two: "stuff"
-    });
     expect(history.entries[1].search).toEqual("?two=stuff");
   });
 
@@ -127,9 +121,6 @@ describe("useHistoryWithQuery", () => {
       result.current.push("/path?two=stuff");
     });
 
-    expect(result.current.location.query).toEqual({
-      two: "stuff"
-    });
     expect(history.entries[1].search).toEqual("?two=stuff");
   });
 });
