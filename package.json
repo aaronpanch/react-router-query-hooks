@@ -46,8 +46,9 @@
     "babel-jest": "^25.1.0",
     "history": "^4.10.1",
     "jest": "^25.1.0",
-    "react": "^16.13.1",
-    "react-test-renderer": "^16.13.1"
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-test-renderer": "^16.14.0"
   },
   "dependencies": {
     "query-string": "^6.11.1",
