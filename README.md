@@ -8,10 +8,10 @@ Primarily, it exports a simple `useQueryParams` hook for reading and manipulatin
 
 Depends on:
 
-- `react-router-dom@5.1` (needs hooks)
+- `react-router-dom@^5.1` (needs hooks)
 - `query-string`
 
-This package is also written in ES6, so to use, you'll need some transpiler such as babel (on node_modules).
+This package is also written in ES6, so to use, you'll need some transpiler such as babel to run on node_modules.
 
 ## How to Install
 
@@ -58,7 +58,7 @@ This modified hook adds the `query` key to React Router's [`location` object](ht
 
 ```jsx
 import { useLocation } from "react-router-dom";
-import { useLocationWithQuery } from "react-router-query-string";
+import { useLocationWithQuery } from "react-router-query-hooks";
 
 const MyComponentInRouter = () => {
   // const location = useLocation();
