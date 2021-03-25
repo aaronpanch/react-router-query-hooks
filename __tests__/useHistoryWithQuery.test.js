@@ -85,7 +85,7 @@ describe("useHistoryWithQuery", () => {
       result.current.replace({ query: { two: "stuff" } });
     });
 
-    expect(history.entries[0].search).toEqual("?two=stuff");
+    expect(history.location.search).toEqual("?two=stuff");
   });
 
   it("pushes url with query", () => {
@@ -108,7 +108,7 @@ describe("useHistoryWithQuery", () => {
       result.current.push({ query: { two: "stuff" } });
     });
 
-    expect(history.entries[1].search).toEqual("?two=stuff");
+    expect(history.location.search).toEqual("?two=stuff");
   });
 
   it("pushes url with path", () => {
@@ -131,6 +131,6 @@ describe("useHistoryWithQuery", () => {
       result.current.push("/path?two=stuff");
     });
 
-    expect(history.entries[1].search).toEqual("?two=stuff");
+    expect(history.location.search).toEqual("?two=stuff");
   });
 });
