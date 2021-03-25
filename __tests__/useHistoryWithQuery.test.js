@@ -20,13 +20,23 @@ describe("useHistoryWithQuery", () => {
     });
   });
 
+  it("reuses same instance", () => {
+    const { result, rerender } = renderHook(() => useHistoryWithQuery(), {
+      wrapper: makeWrapper(history)
+    });
+
+    const originalHistory = result.current;
+
+    rerender();
+
+    expect(result.current).toBe(originalHistory);
+  });
+
   it("parses search query", () => {
     const { result } = renderHook(() => useHistoryWithQuery(), {
       wrapper: makeWrapper(history)
     });
 
-    // Assert that original history is mutated (to preserve callbacks)
-    expect(result.current).toBe(history);
     expect(result.current.location.pathname).toBe("/path");
     expect(result.current.location.search).toBe(
       "?one=1&two=value&arr=A&arr=B&arr=C"
@@ -75,7 +85,7 @@ describe("useHistoryWithQuery", () => {
       result.current.replace({ query: { two: "stuff" } });
     });
 
-    expect(history.entries[0].search).toEqual("?two=stuff");
+    expect(history.location.search).toEqual("?two=stuff");
   });
 
   it("pushes url with query", () => {
@@ -98,7 +108,7 @@ describe("useHistoryWithQuery", () => {
       result.current.push({ query: { two: "stuff" } });
     });
 
-    expect(history.entries[1].search).toEqual("?two=stuff");
+    expect(history.location.search).toEqual("?two=stuff");
   });
 
   it("pushes url with path", () => {
@@ -121,6 +131,6 @@ describe("useHistoryWithQuery", () => {
       result.current.push("/path?two=stuff");
     });
 
-    expect(history.entries[1].search).toEqual("?two=stuff");
+    expect(history.location.search).toEqual("?two=stuff");
   });
 });
