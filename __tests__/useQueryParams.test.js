@@ -92,4 +92,19 @@ describe("useQueryParams", () => {
     });
     expect(history.entries).toHaveLength(2);
   });
+
+  it("reuses parsed query if search string hasn't changed", () => {
+    const options = { parseNumbers: true };
+    const { result, rerender } = renderHook(() => useQueryParams(options), {
+      wrapper: makeWrapper(history)
+    });
+
+    const [firstParsedQuery] = result.current;
+
+    rerender();
+
+    const [secondParsedQuery] = result.current;
+
+    expect(secondParsedQuery).toBe(firstParsedQuery);
+  });
 });
