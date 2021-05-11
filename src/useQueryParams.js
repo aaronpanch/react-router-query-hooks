@@ -1,5 +1,6 @@
-import { useCallback } from "react";
-import useLocationWithQuery from "./useLocationWithQuery";
+import { useMemo, useCallback } from "react";
+import { useLocation } from "react-router-dom";
+import queryString from "query-string";
 import useHistoryWithQuery from "./useHistoryWithQuery";
 
 const updateURL = (history, type, update) =>
@@ -9,8 +10,13 @@ const updateURL = (history, type, update) =>
   });
 
 export default queryOptions => {
-  const location = useLocationWithQuery({ queryOptions });
+  const { search } = useLocation();
   const history = useHistoryWithQuery({ queryOptions });
+
+  const query = useMemo(() => queryString.parse(search, queryOptions), [
+    search,
+    queryOptions
+  ]);
 
   const pushQuery = useCallback(update => updateURL(history, "push", update), [
     history
@@ -21,5 +27,5 @@ export default queryOptions => {
     [history]
   );
 
-  return [location.query, { pushQuery, replaceQuery }];
+  return [query, { pushQuery, replaceQuery }];
 };
